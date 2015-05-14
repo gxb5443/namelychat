@@ -12,7 +12,7 @@ type User struct {
 	LastName  string
 	Email     string
 	Alias     string
-	//Rooms map[hub]bool
+	//Rooms map[string]bool
 }
 
 func New(fname, lname string) *User {
