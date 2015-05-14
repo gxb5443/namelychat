@@ -2,14 +2,14 @@ package main
 
 import (
 	"log"
-
-	"github.com/gin-gonic/contrib/static"
-	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func main() {
-	r := gin.Default()
-	r.NoRoute(static.Serve("/", static.LocalFile("./public/", false)))
-	log.Println("Running Webserver...")
-	r.Run(":6000")
+	go h.run()
+	http.HandleFunc("/ws", serveWs)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
