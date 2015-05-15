@@ -10,6 +10,7 @@ type Room struct {
 	Id          string
 	Name        string
 	Private     bool
+	Members     map[*User]bool
 	connections map[*conn.connection]bool
 	broadcast   chan []byte
 	register    chan *conn.connection
@@ -25,6 +26,7 @@ func newRoom(name string, private bool) *hub {
 		Name:        name,
 		Id:          id,
 		Private:     private,
+		Members:     make(map[*User]bool),
 		broadcast:   make(chan []byte),
 		register:    make(chan *conn.connection),
 		unregister:  make(chan *conn.connection),
